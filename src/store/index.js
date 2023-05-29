@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as getters from "./getters"
 
 Vue.use(Vuex)
 
@@ -8,15 +7,21 @@ export default new Vuex.Store({
   state: {
     title: "message"
   },
-  getters,
+  getters: {
+    getTitle: (state) => {
+      return state.title
+    }
+  },
   mutations: {
-    setTitle: (state, value) => {
-      return state.title = value
+    setTitle: (state, v) => {
+      state.title = v;
     }
   },
   actions: {
-    setTitleActions: (context, value) => {
-      return context.commit("setTitle", value)
+    setTitleActions: (context, v) => {
+      setTimeout(() => {
+        context.commit("setTitle", v)
+      }, 2500)
     }
   },
   modules: {
